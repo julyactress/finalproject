@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 50px;
+            overflow: hidden; /* Ensure the sparkles don't cause overflow */
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .button-container {
+            margin: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #005f8c;
+        }
+
+        .result {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        /* Sparkle animation */
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 1; }
+            50% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ffcc00;
+            pointer-events: none;
+            animation: sparkle 1s ease-in-out infinite;
+        }
+
+        /* Container for sparkles */
+        .sparkles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Monkey face for tie */
+        .monkey-face {
+            font-size: 3rem;
+            color: #ff9900;
+            margin-top: 20px;
+        }
+
+        /* Sad face for losing */
+        .sad-face {
+            font-size: 3rem;
+            color: #ff0000;
+            margin-top: 20px;
+        }
+
+        /* Link to go back to the main page */
+        .back-link {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #007acc;
+        }
+
+        .back-link:hover {
+            color: #005f8c;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Rock Paper Scissors Game</h1>
+    <p>Choose your move:</p>
+
+    <!-- Buttons for the game options -->
+    <div class="button-container">
+        <button onclick="playGame('rock')">Rock</button>
+        <button onclick="playGame('paper')">Paper</button>
+        <button onclick="playGame('scissors')">Scissors</button>
+    </div>
+
+    <!-- Display the result -->
+    <div id="result" class="result"></div>
+    <div id="message" class="message"></div>
+
+    <!-- Sparkles container -->
+    <div id="sparkles-container" class="sparkles-container"></div>
+
+    <!-- Sad face element (hidden by default) -->
+    <div id="sadFaces" class="sad-face"></div>
+
+    <!-- Monkey face element (hidden by default) -->
+    <div id="monkeyFaces" class="monkey-face"></div>
+
+    <!-- Link to go back to the main page -->
+    <a href="../index.html" class="back-link">Back to Main Page</a>
+
+    <script>
+        // Function to play the game
+        function playGame(userChoice) {
+            // Options for the computer
+            const choices = ['rock', 'paper', 'scissors'];
+            // Randomly select a computer choice
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            // Display the user and computer choices
+            document.getElementById('result').innerHTML = `You chose: ${userChoice}<br>Computer chose: ${computerChoice}`;
+
+            // Reset the message and emoji containers
+            document.getElementById('sadFaces').innerHTML = '';
+            document.getElementById('monkeyFaces').innerHTML = '';
+            document.getElementById('message').innerHTML = '';
+
+            // Determine the winner
+            let resultMessage = '';
+
+            if (userChoice === computerChoice) {
+                resultMessage = 'It\'s a tie!';
+                displayMonkey(); // Show 1 monkey for tie
+            } else if (
+                (userChoice === 'rock' && computerChoice === 'scissors') ||
+                (userChoice === 'scissors' && computerChoice === 'paper') ||
+                (userChoice === 'paper' && computerChoice === 'rock')
+            ) {
+                resultMessage = 'You win!';
+                createSparkles(); // Trigger sparkles when user wins
+            } else {
+                resultMessage = 'You lose!';
+                displaySadFace(); // Show 1 sad face for loss
+            }
+
+            // Display the outcome
+            document.getElementById('message').innerHTML = resultMessage;
+        }
+
+        // Function to create sparkles
+        function createSparkles() {
+            const sparkleContainer = document.getElementById('sparkles-container');
+
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = `${Math.random() * window.innerWidth}px`;
+                sparkle.style.top = `${Math.random() * window.innerHeight}px`;
+                sparkle.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
+
+                sparkleContainer.appendChild(sparkle);
+
+                // Remove sparkle after animation ends
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        }
+
+        // Function to display 1 monkey for a tie
+        function displayMonkey() {
+            let monkeysContainer = document.getElementById('monkeyFaces');
+            monkeysContainer.innerHTML = '🐒';
+        }
+
+        // Function to display 1 sad face for a loss
+        function displaySadFace() {
+            let sadFacesContainer = document.getElementById('sadFaces');
+            sadFacesContainer.innerHTML = '😢';
+        }
+    </script>
+
+</body>
+</html>

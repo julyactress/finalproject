@@ -1,0 +1,107 @@
+/* Style the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #a8e4fc;
+    margin: 0;
+    padding: 20px;
+
+    /* Center content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+
+/* Style the title */
+.title {
+    font-size: 2.5rem;          /* Make the title larger */
+    font-weight: bold;          /* Bold font */
+    color: #333;                /* Dark text color */
+    padding: 10px 20px;         /* Add padding inside the heading */
+    border: 2px solid #89b7e5;  /* Add a border around the title */
+    border-radius: 8px;         /* Rounded corners for the border */
+    background-color: #eaf4ff;  /* Light background color */
+    text-align: center;         /* Center the text */
+    margin-bottom: 20px;        /* Add spacing below the title */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+
+
+/* Style the header */
+header {
+    display: flex;
+    flex-direction: column;  /* Stack elements vertically */
+    align-items: center;     /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    text-align: center;      /* Center the text */
+    width: 100%;             /* Ensure it takes up the full width */
+}
+
+/* Style the navigation links container */
+.nav-links {
+    display: flex;
+    flex-direction: column;  /* Stack links vertically */
+    align-items: center;     /* Center the links horizontally */
+    margin-top: 10px;         /* Add some space between the title and links */
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    margin: 5px 0;   /* Reduce margin between links */
+    text-align: center; 
+}
+
+a:hover {
+    color: #005f8c;
+}
+
+a:hover {
+    color: #005f8c;
+}
+
+/* Style the iframe */
+iframe {
+    border: 2px solid #ccc;
+    margin: 10px 0;
+    width: 80%;
+}
+
+/* Style the tableau container */
+.tableauPlaceholder {
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    width: 80%;
+}
+.main-content {
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.sidebar {
+    width: 100%;
+    max-width: 300px;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
